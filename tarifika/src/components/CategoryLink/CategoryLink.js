@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import styles from './CategoryLink.style'
 
-const CategoryLink = () => {
+const CategoryLink = ({ category, onPress }) => {
+
+    const handlePushNavigation = () => {
+        onPress(category.strCategory)
+    }
     return (
-        <View style={styles.container}>
-            <Text>Link</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={handlePushNavigation}>
+            <View style={styles.container}>
+                <Image style={styles.image} source={{ uri: category.strCategoryThumb }} />
+                <Text style={styles.title}>{category.strCategory}</Text>
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 
